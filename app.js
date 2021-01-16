@@ -1,6 +1,5 @@
 const express = require('express');
 const app = express();
-const PORT = 3001;
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv/config');
@@ -33,5 +32,5 @@ app.use('/news', verifyToken, newsRoute);
 
 
 app.listen(process.env.PORT, () => {
-    console.log(`express listening at port ${PORT}`);
+    console.log(`express listening`);
 });
