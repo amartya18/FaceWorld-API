@@ -5,6 +5,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv/config');
 
+const verifyToken = require('./routes/validate-token');
+
 app.use(bodyParser.json());
 
 // APIs: news, and calendar
@@ -22,8 +24,10 @@ app.get('/', (req, res) => {
 const newsRoute = require('./routes/news');
 const userRoute = require('./routes/user');
 
-app.use('/news', newsRoute);
 app.use('/user', userRoute);
+
+// protected routes
+app.use('/news', verifyToken, newsRoute);
 
 
 app.listen(PORT, () => {
