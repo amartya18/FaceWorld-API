@@ -23,8 +23,10 @@ app.get('/', (req, res) => {
 // import routes
 const newsRoute = require('./routes/news');
 const userRoute = require('./routes/user');
+const apiRoute = require('./routes/api');
 
 app.use('/user', userRoute);
+app.use('/api', apiRoute);
 
 // protected routes
 app.use('/news', verifyToken, newsRoute);
