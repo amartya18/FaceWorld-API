@@ -32,6 +32,6 @@ app.use('/api', apiRoute);
 app.use('/news', verifyToken, newsRoute);
 
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
     console.log(`express listening at port ${PORT}`);
 });
