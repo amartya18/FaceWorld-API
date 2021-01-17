@@ -21,6 +21,7 @@ app.get('/', (req, res) => {
 
 // import routes
 const newsRoute = require('./routes/news');
+const calendarRoute = require('./routes/calendar');
 const userRoute = require('./routes/user');
 const apiRoute = require('./routes/api');
 
@@ -29,6 +30,7 @@ app.use('/api', apiRoute);
 
 // protected routes
 app.use('/news', verifyToken, newsRoute);
+app.use('/calendar', verifyToken, calendarRoute);
 
 
 app.listen(process.env.PORT, () => {
