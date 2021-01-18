@@ -1,9 +1,10 @@
 const express = require('express');
 const router = express.Router();
 const News = require('../models/News');
+const Calendar = require('../models/Calendar');
 
 // endpoint for FaceWorld
-router.get('/', async (req, res) => {
+router.get('/news', async (req, res) => {
 
     try {
         const redirectNews = await News.findOne({ selected: true });
@@ -16,6 +17,17 @@ router.get('/', async (req, res) => {
         res.status(500).send('no selected news found 😢');
     }
 });
+
+router.get('/calendar', async (req, res) => {
+    const allCalendar = await Calendar.find({}).sort('date');
+
+    try {
+        res.status(200).send(allCalendar);
+    } catch (error) {
+        res.status(500).send('failed to fetch all calendar 😬');
+    }
+});
+
 
 
 module.exports = router;
