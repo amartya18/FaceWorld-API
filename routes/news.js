@@ -37,11 +37,18 @@ router.delete('/delete/:id', async (req, res) => {
     }
 });
 
-router.patch('/update/:id', async (req, res) => {
+router.post('/update/:id', async (req, res) => {
     try {
-        const news = await News.findByIdAndUpdate(req.params.id, req.body);
-        const newsUpdated = await news.save();
-        res.status(200).send('update sucessful 🤘🏻');
+        // change other news to negative
+        const otherNews = await News.updateMany({ selected: true }, { "$set": { selected: false } });
+        console.log(otherNews.nModified);
+
+        const news = await News.findByIdAndUpdate(req.params.id, {
+            selected: true
+        });
+        await news.save();
+
+        res.status(200).send({message: 'update sucessful 🤘🏻' });
     } catch (error) {
         res.status(500).send('update error 😔');
     }

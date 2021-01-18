@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 // APIs: news, and calendar
 
 // connect to mongodb atlas
-mongoose.connect(process.env.ATLAS_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true }, () => {
+mongoose.connect(process.env.ATLAS_CONNECTION, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false }, () => {
     console.log('connected to mongodb atlas');
 })
 
