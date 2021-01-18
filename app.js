@@ -3,6 +3,8 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv/config');
+const cors = require("cors");
+
 
 const verifyToken = require('./routes/validate-token');
 
