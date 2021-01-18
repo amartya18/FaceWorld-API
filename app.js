@@ -3,10 +3,13 @@ const app = express();
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 require('dotenv/config');
+const cors = require("cors");
+
 
 const verifyToken = require('./routes/validate-token');
 
 app.use(bodyParser.json());
+app.use(cors());
 
 // APIs: news, and calendar
 
