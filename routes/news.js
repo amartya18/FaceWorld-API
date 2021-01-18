@@ -41,7 +41,6 @@ router.post('/update/:id', async (req, res) => {
     try {
         // change other news to negative
         const otherNews = await News.updateMany({ selected: true }, { "$set": { selected: false } });
-        console.log(otherNews.nModified);
 
         const news = await News.findByIdAndUpdate(req.params.id, {
             selected: true
