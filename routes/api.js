@@ -19,7 +19,7 @@ router.get('/news', async (req, res) => {
 });
 
 router.get('/calendar', async (req, res) => {
-    const allCalendar = await Calendar.find({}).sort('date');
+    const allCalendar = await Calendar.find({ date: {"$gte": Date.now()}}).sort('date');
 
     try {
         res.status(200).send(allCalendar);
